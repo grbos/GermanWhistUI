@@ -1,5 +1,5 @@
 export class GameInfo{
-    id? : number;
+    id : number = 0;
     userPlayerId? : number;
     opponentPlayerId? : number;
     hasGameStarted? : boolean;

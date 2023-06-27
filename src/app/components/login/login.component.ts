@@ -20,7 +20,10 @@ export class LoginComponent {
           localStorage.setItem('token', data.token);
           this.router.navigate(["/"]);
         },
-        error: (e) => console.error(e),
+        error: (e) => {
+          console.error(e);
+          // ToDo: handle errors
+        },
         complete: () => console.info('jwt toke acquired') 
     });
     

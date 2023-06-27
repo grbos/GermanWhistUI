@@ -1,7 +1,7 @@
 export class Card{
-    id? : number;
+    id : number =0;
     suit = "";
     suitName = "";
-    Number? : number;
+    Number : number = 0;
     name = "";
 }

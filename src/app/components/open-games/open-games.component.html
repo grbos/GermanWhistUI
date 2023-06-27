@@ -1,6 +1,12 @@
-<div class="d-flex justify-content-between">
-    <span>Resume Game 27 against Player 8</span>
-    <div class="d-flex justify-content-end">
-        <button gameid="27" class="btn btn-primary">Resume</button>
-        <button gameid="27" class="btn btn-danger">Delete</button></div>
-</div>
+<h2>Open Games</h2>
+<p *ngIf="openGames.length == 0">There are currently no open games!</p>
+<ul *ngIf="openGames.length > 0" class="list-group">
+    <li *ngFor="let game of openGames" class="list-group-item">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>Join Game {{ game.id }} against Player {{ game.opponentPlayerId }}</span>
+            <div class="d-flex justify-content-end">
+                <button (click)="onResumeGame(game.id)" class="btn btn-primary">Join</button>
+            </div>
+        </div>
+    </li>
+</ul>

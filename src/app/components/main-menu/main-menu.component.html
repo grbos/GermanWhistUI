@@ -1,12 +1,12 @@
 <div class="container d-flex justify-content-center align-items-center">
-    <div class="col-12 col-md-4 ">
+    <div class="col-12 col-lg-7 ">
         <h1>Main Menu</h1>
         <ul class="list-group">
             <li class="list-group-item">
-                <a routerLink="/games/open">Open Games</a>
+                <app-open-games></app-open-games>
             </li>
             <li class="list-group-item">
-                <a routerLink="/games/ongoing">Ongoing Games</a>
+                <app-ongoing-games></app-ongoing-games>
             </li>
             <li class="list-group-item">
                 <a routerLink="/games/new">Start a New Game</a>
@@ -15,7 +15,7 @@
                 <a routerLink="/games/new-bot">Start a New Game Against a Bot</a>
             </li>
             <li class="list-group-item">
-                <a routerLink="/login" (click)="logout()">Logout</a>
+                <a routerLink="/login" (click)="onLogout()">Logout</a>
             </li>
         </ul>
     </div>

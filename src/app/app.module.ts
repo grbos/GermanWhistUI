@@ -9,13 +9,15 @@ import { LoginComponent } from './components/login/login.component';
 import { JwtService } from './services/interceptors/jwt.service';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { OpenGamesComponent } from './components/open-games/open-games.component';
+import { OngoingGamesComponent } from './components/ongoing-games/ongoing-games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainMenuComponent,
-    OpenGamesComponent
+    OpenGamesComponent,
+    OngoingGamesComponent
   ],
   imports: [
     BrowserModule,

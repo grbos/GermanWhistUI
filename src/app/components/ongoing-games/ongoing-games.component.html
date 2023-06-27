@@ -1,0 +1,12 @@
+<h2>Ongoing games</h2>
+<ul class="list-group">
+    <li *ngFor="let game of ongoingGames" class="list-group-item">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>Resume Game {{ game.id }} against Player {{ game.opponentPlayerId }}</span>
+            <div class="d-flex justify-content-end">
+                <button (click)="onDeleteGame(game.id)" class="btn btn-danger me-2">Delete</button>
+                <button (click)="onJoinGame(game.id)" class="btn btn-primary">Resume</button>
+            </div>
+        </div>
+    </li>
+</ul>
