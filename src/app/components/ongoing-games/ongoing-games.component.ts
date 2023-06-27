@@ -11,7 +11,7 @@ import { MenuService } from 'src/app/services/menu.service';
 export class OngoingGamesComponent {
   ongoingGames : GameInfo[] = [];
 
-  constructor(private menuService: MenuService, private gameService : GameService){}
+  constructor(private menuService: MenuService){}
   
   ngOnInit() {
     this.menuService.getOngoingGames().subscribe({
@@ -22,10 +22,10 @@ export class OngoingGamesComponent {
   }
 
   onJoinGame(gameId : number){
-    this.gameService.joinGame(gameId);
+    this.menuService.joinGame(gameId);
   }
 
   onDeleteGame(gameId : number){
-    this.gameService.deleteGame(gameId);
+    this.menuService.deleteGame(gameId);
   }
 }

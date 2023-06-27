@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { GameService } from 'src/app/services/game.service';
+import { MenuService } from 'src/app/services/menu.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -9,7 +10,7 @@ import { GameService } from 'src/app/services/game.service';
   styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent {
-  constructor(private authService : AuthService, private router: Router, private gameService : GameService) {}
+  constructor(private authService : AuthService, private router: Router, private menuService : MenuService) {}
 
   onLogout(){
     this.authService.logout()
@@ -17,10 +18,10 @@ export class MainMenuComponent {
   }
 
   onStartNewGameAgainstHuman(gameId: number){
-    this.gameService.startNewGameAgainstHuman(gameId);
+    this.menuService.startNewGameAgainstHuman(gameId);
   }
 
   startNewGameAgainstBot(gameId: number){
-    this.gameService.startNewGameAgainstBot(gameId);
+    this.menuService.startNewGameAgainstBot(gameId);
   }
 }
