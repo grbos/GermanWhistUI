@@ -16,9 +16,12 @@ export class GameComponent {
   constructor(private gameService : GameService){}
 
   ngOnInit(){
-    let gameId = 32;
+    let gameId = 29;
     this.gameService.getGameState(gameId).subscribe({
-      next: (gameState) => this.gameState = gameState,
+      next: (gameState) => {
+        this.gameState = gameState;
+        this.gameState.hand.sort();
+      },
       error: (e) => console.log(e),
       complete: () => {}
   });
@@ -38,11 +41,15 @@ export class GameComponent {
     if (cardId === undefined){
       return "";
     }
-    let card = this.cardsList.find(card => card.id = cardId);
+    let card = this.cardsList.find(card => card.id == cardId);
     if (card === undefined){
       return "";
     }    
     return card.url;
+  }
+
+  public onCardClick(cardId : number){
+    console.log("Clicked card with id"+cardId);
   }
 
 }
