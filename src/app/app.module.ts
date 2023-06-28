@@ -10,6 +10,8 @@ import { JwtService } from './services/interceptors/jwt.service';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { OpenGamesComponent } from './components/open-games/open-games.component';
 import { OngoingGamesComponent } from './components/ongoing-games/ongoing-games.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { OngoingGamesComponent } from './components/ongoing-games/ongoing-games.
     LoginComponent,
     MainMenuComponent,
     OpenGamesComponent,
-    OngoingGamesComponent
+    OngoingGamesComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtService, multi: true },

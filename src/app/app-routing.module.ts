@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './components/register/register.component';
 
 const routes: Routes = [
   {path: '', component: MainMenuComponent, canActivate: [AuthService]  },
-  {path: 'login', component: LoginComponent }
+  {path: 'login', component: LoginComponent },
+  {path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({

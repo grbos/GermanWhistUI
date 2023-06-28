@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment.development';
 })
 export class AuthService implements CanActivate {
   private loginUrl = "Users/BearerToken"
+  private registerUrl = "Users"
+
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -18,6 +20,15 @@ export class AuthService implements CanActivate {
       {
         "userName": userName,
         "password": password
+      })
+  }
+
+  register(userName: string, email: string, password: string): Observable<any>{
+    return this.http.post<any>(`${environment.apiUrl}/${this.registerUrl}`,
+      {
+        "userName": userName,
+        "password": password,
+        "email": email
       })
   }
 
