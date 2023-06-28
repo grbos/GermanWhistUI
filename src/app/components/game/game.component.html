@@ -1,0 +1,50 @@
+<div>
+    <div class="d-flex m-3">
+        <div class="me-auto">
+            <button id="menuButton" class="btn btn-primary">Menu</button>
+            <h3>
+                Player Id: <span id="playerId"></span>  -  GameId: <span id="gameId"></span>
+            </h3>
+        </div>
+        <div class="p-2">
+            <h3>Score: <span id="player-score">0</span>:<span id="opponent-score">0</span> - Target Score: <span id="target-score">0</span></h3>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center m-4 flex-wrap" id="opponent-card-row">
+        <img *ngFor="let _ of [].constructor(gameState.numberOfHandCardsOpponent)" src="/assets/images/back.svg" class="opponent-hand-card">
+    </div>
+    <div class="row ">
+        <div class="col-4 align-self-center">
+
+            <div class="d-flex justify-content-center ">
+                <h5 id="top-card-and-round-score-text">Top Card of Stack:</h5>
+            </div>
+            <div id="top-card-container" class="d-flex justify-content-center ">
+                <img *ngIf="gameState && gameState.topCardId" src="{{ getCardUrlFromId(gameState.topCardId) }}" class="top-card">
+            </div>
+        </div>
+        <div class="col-4 ">
+            <div id="opponent-played-card-container" class="d-flex justify-content-center m-2 played-card-container">
+                <img *ngIf="gameState && !showPreviousCards && gameState.playedCardIdOpponent" src="{{ getCardUrlFromId(gameState.playedCardIdOpponent) }}" class="top-card">
+                <img *ngIf="gameState && showPreviousCards && gameState.previousPlayedCardIdOpponent" src="{{ getCardUrlFromId(gameState.previousPlayedCardIdOpponent) }}" class="top-card">
+            </div>
+            <div id="remove-cards-button-container" class="d-flex justify-content-center m-2">
+                <button id="remove-cards-button" Class="btn btn-primary">Remove Cards</button>
+            </div>
+            <div id="player-played-card-container" class="d-flex justify-content-center m-2 played-card-container">
+                <img *ngIf="gameState && !showPreviousCards && gameState.playedCardIdPlayer" src="{{ getCardUrlFromId(gameState.playedCardIdOpponent) }}" class="top-card">
+                <img *ngIf="gameState && showPreviousCards && gameState.previousPlayedCardIdPlayer" src="{{ getCardUrlFromId(gameState.previousPlayedCardIdPlayer) }}" class="top-card">
+
+            </div>
+        </div>
+        <div class="col-4 align-self-center">
+
+            <div class="d-flex justify-content-center ">
+                <h5>Trump:</h5>
+            </div>
+            <div id="trump-indicator-container" class="d-flex justify-content-center">
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center m-4 flex-wrap" id="user-card-row"></div>
+</div>

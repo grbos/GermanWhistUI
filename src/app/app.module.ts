@@ -12,6 +12,7 @@ import { OpenGamesComponent } from './components/open-games/open-games.component
 import { OngoingGamesComponent } from './components/ongoing-games/ongoing-games.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GameComponent } from './components/game/game.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainMenuComponent,
     OpenGamesComponent,
     OngoingGamesComponent,
-    RegisterComponent
+    RegisterComponent,
+    GameComponent
   ],
   imports: [
     BrowserModule,

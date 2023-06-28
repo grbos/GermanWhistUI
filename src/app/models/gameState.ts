@@ -3,7 +3,7 @@ export class GameState{
     hand: number[] = [];
     newHandCardId?: number;
     numberOfHandCardsOpponent = 0;
-    topCardId = 0;
+    topCardId? : number;
     playedCardIdPlayer?: number;
     playedCardIdOpponent?: number;
     previousPlayedCardIdPlayer?: number;

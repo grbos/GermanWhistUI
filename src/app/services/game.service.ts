@@ -3,43 +3,38 @@ import { Card } from '../models/card';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { GameState } from '../models/gameState';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  private url = "games/GermanWhist/Cards";
+  private baseGameUrl = "games/GermanWhist"
+  private getCardsUrl = "Cards";
+  private getGameStateUrl = "player-view"
+  private cardsList : Card[] = [];
+
 
   private apiUrl = "https://localhost:7005/api"
 
   constructor(private http : HttpClient) { }
 
+
+
   public getCards(): Observable<Card[]> {
-    return this.http.get<Card[]>(`${environment.apiUrl}/${this.url}`)
+    return this.http.get<Card[]>(`${environment.apiUrl}/${this.baseGameUrl}/${this.getCardsUrl}`)
   }
 
-  public resumeGame(gameId : number){
-    //TODO
-    console.log(`starting game ${gameId}`)
+  public addUrlToCards(cards: Card[]){
+    for(let card of cards){
+      card.url = `/assets/images/cards/${card.name.toLowerCase()}_of_${card.suitName.toLowerCase()}.svg`
+    }
   }
 
-  public deleteGame(gameId : number){
-    //TODO
-    console.log(`deleting game ${gameId}`)
+  public getGameState(gameId : number){
+    return this.http.get<GameState>(
+      `${environment.apiUrl}/${this.baseGameUrl}/${gameId}/${this.getGameStateUrl}`)
   }
 
-  public joinGame(gameId : number){
-    //TODO
-    console.log(`joining game ${gameId}`)
-  }
-
-  public startNewGameAgainstHuman(gameId : number){
-    //TODO
-    console.log(`joining game ${gameId}`)
-  }
-
-  public startNewGameAgainstBot(gameId : number){
-    //TODO
-    console.log(`joining game ${gameId}`)
-  }
+ 
 }

@@ -4,4 +4,5 @@ export class Card{
     suitName = "";
     Number : number = 0;
     name = "";
+    url = "";
 }

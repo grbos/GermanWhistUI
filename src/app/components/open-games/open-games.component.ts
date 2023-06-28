@@ -11,7 +11,7 @@ import { MenuService } from 'src/app/services/menu.service';
 export class OpenGamesComponent {
   openGames : GameInfo[] = [];
 
-  constructor(private menuService : MenuService, private gameService : GameService){}
+  constructor(private menuService : MenuService){}
   
   ngOnInit() {
     this.menuService.getOpenGames().subscribe({
@@ -22,6 +22,6 @@ export class OpenGamesComponent {
   }
 
   onResumeGame(gameId : number){
-    this.gameService.resumeGame(gameId);
+    this.menuService.resumeGame(gameId);
   }
 }
