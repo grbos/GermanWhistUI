@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-center">
-    <h3>Join an open Game</h3>
+    <h3>Join an Open Game</h3>
 </div>
-<p *ngIf="openGames.length == 0">There are currently no open games!</p>
+<div *ngIf="openGames.length == 0" class="d-flex justify-content-center mt-2">
+    <p >There are Currently no Open Games!</p>
+</div>
 <ul *ngIf="openGames.length > 0" class="list-group">
     <li *ngFor="let game of openGames" class="list-group-item">
         <div class="d-flex justify-content-between align-items-center">

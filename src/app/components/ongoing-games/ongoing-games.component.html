@@ -1,10 +1,13 @@
 <div class="d-flex justify-content-center">
     <h3>Resume a saved Game</h3>
 </div>
+<div *ngIf="ongoingGames.length == 0" class="d-flex justify-content-center align-items-center  mt-2">
+    <p>Currently you Have no Saved Games</p>
+</div>
 <ul *ngIf="ongoingGames.length > 0" class="list-group">
     <li  *ngFor="let game of ongoingGames" class="list-group-item">
         <div class="d-flex justify-content-between align-items-center">
-            <span>Resume Game {{ game.id }} against {{ game.opponentPlayerName }}</span>
+            <span>Resume Game {{ game.id }} Against {{ game.opponentPlayerName }}</span>
             <div class="d-flex justify-content-end">
                 <button (click)="onDeleteGame(game.id)" class="btn btn-danger me-2">Delete</button>
                 <button [routerLink]="[AppRoutes.GAME, game.id]" class="btn btn-primary">Resume</button>
@@ -12,6 +15,3 @@
         </div>
     </li>
 </ul>
-<div *ngIf="ongoingGames.length == 0" class="d-flex justify-content-between align-items-center">
-    <p>Currently you have no saved games</p>
-</div>
