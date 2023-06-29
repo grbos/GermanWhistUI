@@ -20,5 +20,6 @@ export class GameState{
     roundScorePlayer = 0;
     roundScoreOpponent = 0;
     validMoves : number[] = [];
-    isTrickOngoing = true;
+    isTrickOngoing = false;
+    hasGameEnded = false;
   }

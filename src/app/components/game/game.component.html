@@ -1,7 +1,7 @@
 <div>
     <div class="d-flex m-3">
         <div class="me-auto">
-            <button id="menuButton" class="btn btn-primary">Menu</button>
+            <button id="menuButton" class="btn btn-primary" [routerLink]="[AppRoutes.MENU]">Menu</button>
             <h3>
                 Player Id: <span id="playerId"></span>  -  GameId: <span id="gameId"></span>
             </h3>
@@ -17,7 +17,9 @@
         <div class="col-4 align-self-center">
 
             <div class="d-flex justify-content-center ">
-                <h5 id="top-card-and-round-score-text">Top Card of Stack:</h5>
+                <h5 *ngIf="gameState && gameState.topCardId" >Top Card of Stack:</h5>
+                <h5 *ngIf="gameState && !gameState.topCardId">Round Score: {{ gameState.roundScorePlayer }} : {{ gameState.roundScoreOpponent }}</h5>
+
             </div>
             <div id="top-card-container" class="d-flex justify-content-center ">
                 <img *ngIf="gameState && gameState.topCardId" src="{{ getCardUrlFromId(gameState.topCardId) }}" class="top-card">
@@ -26,15 +28,23 @@
         <div class="col-4 ">
             <div id="opponent-played-card-container" class="d-flex justify-content-center m-2 played-card-container">
                 <img *ngIf="gameState && !showPreviousCards && gameState.playedCardIdOpponent" src="{{ getCardUrlFromId(gameState.playedCardIdOpponent) }}" class="top-card">
-                <img *ngIf="gameState && showPreviousCards && gameState.previousPlayedCardIdOpponent" src="{{ getCardUrlFromId(gameState.previousPlayedCardIdOpponent) }}" class="top-card">
+                <img 
+                    *ngIf="gameState && showPreviousCards && gameState.previousPlayedCardIdOpponent" 
+                    src="{{ getCardUrlFromId(gameState.previousPlayedCardIdOpponent) }}" 
+                    [ngClass]="{'winning-played-card': !gameState.isPlayerPreviousTrickWinner, }"
+                    >
             </div>
             <div id="remove-cards-button-container" class="d-flex justify-content-center m-2">
-                <button *ngIf="showPreviousCards" id="remove-cards-button" Class="btn btn-primary">Remove Cards</button>
+                <button *ngIf="showPreviousCards" id="remove-cards-button" Class="btn btn-primary" (click)="removeCards()">Remove Cards</button>
                 <p *ngIf="!showPreviousCards && !gameState.isPlayerCurrentPlayer">Waiting for other Player</p>
             </div>
             <div id="player-played-card-container" class="d-flex justify-content-center m-2 played-card-container">
                 <img *ngIf="gameState && !showPreviousCards && gameState.playedCardIdPlayer" src="{{ getCardUrlFromId(gameState.playedCardIdPlayer) }}" class="top-card">
-                <img *ngIf="gameState && showPreviousCards && gameState.previousPlayedCardIdPlayer" src="{{ getCardUrlFromId(gameState.previousPlayedCardIdPlayer) }}" class="top-card">
+                <img 
+                    *ngIf="gameState && showPreviousCards && gameState.previousPlayedCardIdPlayer" 
+                    src="{{ getCardUrlFromId(gameState.previousPlayedCardIdPlayer) }}" 
+                    [ngClass]="{'winning-played-card': gameState.isPlayerPreviousTrickWinner, }"
+                >
             </div>
         </div>
         <div class="col-4 align-self-center">
@@ -51,10 +61,10 @@
             <img 
                 *ngFor="let cardId of gameState.hand" 
                 src="{{ getCardUrlFromId(cardId) }}" 
-                [ngClass]="{'top-card':true, 
+                [ngClass]="{'player-hand-card':true, 
                             'new-hand-card':cardId == gameState.newHandCardId,
-                            'not-valid-move':  !gameState.validMoves.includes(cardId),
-                            'valid-move':  gameState.validMoves.includes(cardId),
+                            'not-valid-move':  !gameState.validMoves.includes(cardId) || showPreviousCards,
+                            'valid-move':  gameState.validMoves.includes(cardId) && !showPreviousCards,
                         }"
                 (click)="gameState.validMoves.includes(cardId) ? onCardClick(cardId) : null"
             >

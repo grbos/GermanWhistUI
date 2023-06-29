@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GameInfo } from 'src/app/models/game-info';
 import { GameService } from 'src/app/services/game.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { AppRoutes } from 'src/constants';
 
 @Component({
   selector: 'app-ongoing-games',
@@ -10,22 +11,25 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class OngoingGamesComponent {
   ongoingGames : GameInfo[] = [];
+  AppRoutes = AppRoutes;
 
   constructor(private menuService: MenuService){}
   
   ngOnInit() {
+    this.loadOngoingGames();
+  }
+
+  loadOngoingGames(){
     this.menuService.getOngoingGames().subscribe({
       next: (games) => this.ongoingGames = games,
-      error: (e) => console.log(e),
-      complete: () => {}
+      error: (e) => console.error(e)
   });
   }
 
-  onJoinGame(gameId : number){
-    this.menuService.joinGame(gameId);
-  }
-
   onDeleteGame(gameId : number){
-    this.menuService.deleteGame(gameId);
+    this.menuService.deleteGame(gameId).subscribe({
+      next : () => this.loadOngoingGames(),
+      error : (e) => console.error(e)
+    });
   }
 }

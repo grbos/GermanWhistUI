@@ -9,13 +9,13 @@
                 <app-ongoing-games></app-ongoing-games>
             </li>
             <li class="list-group-item">
-                <a routerLink="/games/new">Start a New Game</a>
+                <button (click)="onStartNewGameAgainstHuman()" class="btn btn-primary">Start a New Game</button>
             </li>
             <li class="list-group-item">
-                <a routerLink="/games/new-bot">Start a New Game Against a Bot</a>
+                <button (click)="onStartNewGameAgainstBot()" class="btn btn-primary">Start a New Game Against a Bot</button>
             </li>
             <li class="list-group-item">
-                <a routerLink="/login" (click)="onLogout()">Logout</a>
+                <button (click)="onLogout()" class="btn btn-primary">Logout</button>
             </li>
         </ul>
     </div>

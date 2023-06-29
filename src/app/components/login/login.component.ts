@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { AppRoutes } from 'src/constants';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   model: any = {};
+  AppRoutes = AppRoutes;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,8 +25,7 @@ export class LoginComponent {
         error: (e) => {
           console.error(e);
           // ToDo: handle errors
-        },
-        complete: () => console.info('jwt toke acquired') 
+        }
     });
     
   }}

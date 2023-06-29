@@ -1,8 +1,8 @@
 export class Card{
     id : number =0;
-    suit = "";
+    suit = 0;
     suitName = "";
-    Number : number = 0;
+    number : number = 0;
     name = "";
     url = "";
 }

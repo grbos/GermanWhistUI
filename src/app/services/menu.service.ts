@@ -8,41 +8,41 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class MenuService {
-  private openGamesURL = "games/GermanWhist";
+  private baseGamesUrl = "games/GermanWhist";
   private ongoingGamesURL = "Users/games/GermanWhist";
 
   constructor(private http: HttpClient) { }
 
   getOpenGames(): Observable<GameInfo[]> {
-    return this.http.get<GameInfo[]>(`${environment.apiUrl}/${this.openGamesURL}`);
+    return this.http.get<GameInfo[]>(`${environment.apiUrl}/${this.baseGamesUrl}`);
+  }
+ 
+  public startNewGameAgainstHuman(): Observable<GameInfo>{
+    return this.http.post<GameInfo>(`${environment.apiUrl}/${this.baseGamesUrl}`, 
+    {
+      "opponentPlayerId": null,
+      "againstBotOpponent": false
+    });
   }
 
   getOngoingGames(): Observable<GameInfo[]> {
     return this.http.get<GameInfo[]>(`${environment.apiUrl}/${this.ongoingGamesURL}`);
   }
   
-  public resumeGame(gameId : number){
-    //TODO
-    console.log(`starting game ${gameId}`)
+  public deleteGame(gameId : number): Observable<any>{
+    return  this.http.delete<any>(`${environment.apiUrl}/${this.baseGamesUrl}/${gameId}`);
   }
 
-  public deleteGame(gameId : number){
-    //TODO
-    console.log(`deleting game ${gameId}`)
+  public joinGame(gameId : number): Observable<GameInfo>{
+    return this.http.post<any>(`${environment.apiUrl}/${this.baseGamesUrl}/${gameId}`, {});
   }
 
-  public joinGame(gameId : number){
-    //TODO
-    console.log(`joining game ${gameId}`)
-  }
 
-  public startNewGameAgainstHuman(gameId : number){
-    //TODO
-    console.log(`joining game ${gameId}`)
-  }
-
-  public startNewGameAgainstBot(gameId : number){
-    //TODO
-    console.log(`joining game ${gameId}`)
+  public startNewGameAgainstBot(){
+    return this.http.post<GameInfo>(`${environment.apiUrl}/${this.baseGamesUrl}`, 
+    {
+      "againstBotOpponent": true,
+      "botDifficulty": 0
+    });
   }
 }

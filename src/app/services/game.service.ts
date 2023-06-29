@@ -11,7 +11,8 @@ import { GameState } from '../models/gameState';
 export class GameService {
   private baseGameUrl = "games/GermanWhist"
   private getCardsUrl = "Cards";
-  private getGameStateUrl = "player-view"
+  private getGameStateUrl = "player-view";
+  private makeMoveUrl = "move";
   private cardsList : Card[] = [];
 
 
@@ -36,5 +37,12 @@ export class GameService {
       `${environment.apiUrl}/${this.baseGameUrl}/${gameId}/${this.getGameStateUrl}`)
   }
 
+  public makeMove(gameId : number, cardId: number){
+    return this.http.post<GameState>(
+      `${environment.apiUrl}/${this.baseGameUrl}/${gameId}/${this.makeMoveUrl}`,
+      {
+        "cardId":cardId
+      })
+  }
  
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppRoutes } from 'src/constants';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent {
   errorMessages: string[] = [];
   registerForm!: FormGroup;
-
+  AppRoutes = AppRoutes;
+  
   constructor(private authService : AuthService, private router : Router, private formBuilder : FormBuilder){}
 
   ngOnInit(){
@@ -27,6 +29,7 @@ export class RegisterComponent {
     this.errorMessages = [];
     if (this.registerForm?.valid) {
       const { username, email, password } = this.registerForm.value;
+      
 
       this.authService.register(username, email, password)
         .subscribe({
@@ -52,8 +55,7 @@ export class RegisterComponent {
 
               // ToDo: handle errors
             }
-        },
-          complete: () => {}
+        }
       });
     }
     else{
