@@ -27,9 +27,11 @@ export class OngoingGamesComponent {
   }
 
   onDeleteGame(gameId : number){
-    this.menuService.deleteGame(gameId).subscribe({
-      next : () => this.loadOngoingGames(),
-      error : (e) => console.error(e)
-    });
+    if (confirm(`Are you sure that you want to delete Game ${gameId}?`)){
+      this.menuService.deleteGame(gameId).subscribe({
+        next : () => this.loadOngoingGames(),
+        error : (e) => console.error(e)
+      });
+    }
   }
 }

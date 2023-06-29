@@ -7,7 +7,7 @@
 <ul *ngIf="openGames.length > 0" class="list-group">
     <li *ngFor="let game of openGames" class="list-group-item">
         <div class="d-flex justify-content-between align-items-center">
-            <span>Join Game {{ game.id }} against {{ game.opponentPlayerName }}</span>
+            <span>Join Game {{ game.id }} Against {{ game.opponentPlayerName }}</span>
             <div class="d-flex justify-content-end">
                 <button (click)="onJoinGame(game.id)" class="btn btn-primary">Join</button>
             </div>
