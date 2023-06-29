@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppRoutes } from 'src/constants';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +14,10 @@ export class RegisterComponent {
   errorMessages: string[] = [];
   registerForm!: FormGroup;
   AppRoutes = AppRoutes;
-  
-  constructor(private authService : AuthService, private router : Router, private formBuilder : FormBuilder){}
 
-  ngOnInit(){
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private messageService: MessageService) { }
+
+  ngOnInit() {
     this.registerForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -29,36 +30,38 @@ export class RegisterComponent {
     this.errorMessages = [];
     if (this.registerForm?.valid) {
       const { username, email, password } = this.registerForm.value;
-      
+
 
       this.authService.register(username, email, password)
         .subscribe({
           next: (data) => {
             localStorage.setItem('token', data.token);
-            this.router.navigate(["/login"]);
+            this.messageService.message = 'Registration successful! Please log in.';
+            this.router.navigate(['/' + AppRoutes.LOGIN]);
           },
           error: (e) => {
             console.error(e);
             if (e.status === 400 && e.error) {
               // Server returned a validation error
-              for(let err of e.error){
+              for (let err of e.error) {
                 this.errorMessages.push(err.description)
               }
             } else if (e.status === 500) {
               // Server error
               let a = [];
-              
+
               this.errorMessages.push('An error occurred on the server. Please try again later.');
             } else {
               // Network error or other error
-              this.errorMessages.push('An error occurred. Please try again later.');          console.error(e);
+              this.errorMessages.push('An error occurred. Please try again later.');
+              console.error(e);
 
               // ToDo: handle errors
             }
-        }
-      });
+          }
+        });
     }
-    else{
+    else {
       this.registerForm.markAllAsTouched();
     }
   }

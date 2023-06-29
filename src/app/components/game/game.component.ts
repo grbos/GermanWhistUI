@@ -16,7 +16,7 @@ export class GameComponent {
   cardsList : Card[] = [];
   showPreviousCards = false;
   pollingInterval: Subscription | null = null;
-  gameId = 29;
+  gameId : number = 0;
   AppRoutes = AppRoutes;
 
   constructor(private gameService : GameService, private changeDetector: ChangeDetectorRef, 
@@ -96,7 +96,7 @@ export class GameComponent {
       else{
         alert("Too bad, you lost!")
       }
-      this.router.navigate([AppRoutes.MENU]);
+      this.router.navigate(['/' + AppRoutes.MENU]);
     }
     this.changeDetector.detectChanges();
   }

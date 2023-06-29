@@ -1,22 +1,32 @@
-<div class="container d-flex justify-content-center align-items-center">
-    <div class="col-12 col-lg-7 ">
-        <h1>Main Menu</h1>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <app-open-games></app-open-games>
-            </li>
-            <li class="list-group-item">
-                <app-ongoing-games></app-ongoing-games>
-            </li>
-            <li class="list-group-item">
-                <button (click)="onStartNewGameAgainstHuman()" class="btn btn-primary">Start a New Game</button>
-            </li>
-            <li class="list-group-item">
-                <button (click)="onStartNewGameAgainstBot()" class="btn btn-primary">Start a New Game Against a Bot</button>
-            </li>
-            <li class="list-group-item">
-                <button (click)="onLogout()" class="btn btn-primary">Logout</button>
-            </li>
-        </ul>
+<div class="vh-100 d-flex justify-content-center align-items-center backgorundContainer">
+    <div class="col-12 col-md-4 card menuCard">
+        <div class="my-4 mx-5">
+            <div class="d-flex justify-content-center mb-3">
+                <!-- <h1>Main Menu</h1> -->
+            </div>
+            <div class="list-group">
+                <div class="mb-4">
+                    <app-open-games></app-open-games>
+                </div>
+                <div class="mb-4">
+                    <app-ongoing-games></app-ongoing-games>
+                </div>
+                <div class="mb-4">
+                    <div class="row">
+                        <div class="col-6 pe-4 ">
+                            <button (click)="onStartNewGameAgainstHuman()" class="w-100 btn btn-primary button-height">Start a New Game</button>
+                        </div>
+                        <div class="col-6 ps-4 ">
+                            <button (click)="onStartNewGameAgainstBot()" class="w-100 btn btn-primary button-height">Start a New Game Against a Bot</button>
+                            </div>
+                    </div>
+                </div>
+                <div class="mb">
+                    <div class="d-flex justify-content-around m-3">
+                        <button (click)="onLogout()" class="btn btn-secondary">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
