@@ -83,7 +83,7 @@ export class GameComponent {
     this.gameState = newGameState;
     this.stopPolling()
     this.gameState.hand.sort((cardId1, cardId2) => this.cardSortingFunction(cardId1, cardId2));
-    if(!this.gameState.isTrickOngoing){
+    if(!this.gameState.isTrickOngoing && (this.gameState.previousPlayedCardIdPlayer != null)){
       this.showPreviousCards = true;
     }
     if (!this.gameState.isPlayerCurrentPlayer && !this.gameState.hasGameEnded) {
@@ -148,7 +148,8 @@ export class GameComponent {
       gameState1.playedCardIdOpponent == gameState2.playedCardIdOpponent &&
       gameState1.playedCardIdPlayer == gameState2.playedCardIdPlayer &&
       gameState1.previousPlayedCardIdOpponent == gameState2.previousPlayedCardIdOpponent &&
-      gameState1.previousPlayedCardIdPlayer == gameState2.previousPlayedCardIdPlayer
+      gameState1.previousPlayedCardIdPlayer == gameState2.previousPlayedCardIdPlayer &&
+      gameState1.isPlayerCurrentPlayer == gameState2.isPlayerCurrentPlayer
     );
   }
 
