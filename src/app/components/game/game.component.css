@@ -1,15 +1,15 @@
 .opponent-hand-card {
-    height: 120px;
+    height: 80px;
     transform: scale(1, 1.07014519);
 }
 
 .played-card-container {
-    height: 200px;
+    height: 100px;
     position: relative;
 }
 
 .top-card {
-    height: 160px;
+    height: 100px;
 }
 
 #trump-indicator-container {
@@ -34,13 +34,13 @@
 }
 
 .player-hand-card {
-    height: 120px;
+    height: 80px;
     border: 3px solid transparent;
 }
 
 .new-hand-card {
     border: 3px solid blue;
-    animation: fadeBorder 3s linear forwards;
+    animation: fadeBorder 6s linear forwards;
     border-radius: 5px;
 }
 

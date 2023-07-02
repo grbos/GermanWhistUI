@@ -4,11 +4,11 @@
             <div class="">
                 <button id="menuButton" class="btn btn-primary" [routerLink]="[AppRoutes.MENU]">Save Game and Go to Menu</button>
             </div>
-            <div class="p-2">
-                <h3>Score: {{ gameState.totalScorePlayer }} - {{ gameState.totalScoreOpponent }}</h3>
+            <div class="">
+                <h4>Score: {{ gameState.totalScorePlayer }} - {{ gameState.totalScoreOpponent }}</h4>
             </div>
-            <div class="p-2">
-                <h3>Target Score: {{ gameState.targetScore }}</h3>
+            <div class="">
+                <h4>Target Score: {{ gameState.targetScore }}</h4>
             </div>
         </div>
         <div class="d-flex justify-content-center m-4 flex-wrap" id="opponent-card-row">
